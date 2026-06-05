@@ -144,8 +144,14 @@ document.addEventListener('DOMContentLoaded', () => {
         animateCounter(displayFailed, 0);
     }
 
+    // Función auxiliar para obtener valores de variables CSS
+    function getCssVar(name) {
+        const value = getComputedStyle(document.documentElement).getPropertyValue(name);
+        return parseInt(value) || 0;
+    }
+
     function animateCounter(element, val) {
-        const scoreHeight = 30; // Debe coincidir con --score-height en CSS
+        const scoreHeight = getCssVar('--score-height') || 30;
         element.style.transform = `translateY(-${val * scoreHeight}px)`;
         
         // Sonido rápido al subir puntos
@@ -178,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnGirar.disabled = true;
         actionButtonsContainer.classList.add('d-none'); // Ocultar botones de acción al inicio del giro
         
-        const slotHeight = 120; // Debe coincidir con el CSS (--slot-height)
+        const slotHeight = getCssVar('--slot-height') || 120;
         const iterations = 4; // Cuántas vueltas extra
 
         // Resultados aleatorios Fila 1
@@ -226,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function spinReel(reel, targetIdx, totalItems, duration, turns) {
-        const slotHeight = 120;
+        const slotHeight = getCssVar('--slot-height') || 120;
 
         // Reiniciar posición a 0 sin animación antes de girar
         reel.style.transition = 'none';

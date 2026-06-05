@@ -10,16 +10,16 @@
 </head>
 <body class="bg-dark text-light">
 
-    <div class="container min-vh-100 d-flex flex-column justify-content-center align-items-center py-5">
+    <div class="container min-vh-100 d-flex flex-column justify-content-center align-items-center py-3 py-md-5">
         <div class="text-center mb-4">
-            <h1 class="display-4 fw-bold">🧗 Ruleta Escaladora</h1>
+            <h1 class="display-5 display-md-4 fw-bold">🧗 Ruleta Escaladora</h1>
             <p class="lead">¡Gira para ver tu siguiente movimiento!</p>
         </div>
 
         <!-- Pantalla de Selección de Nivel -->
         <div id="pantalla-inicio" class="card bg-secondary shadow-lg border-0 mb-4" style="width: 100%; max-width: 500px;">
-            <div class="card-body text-center p-5">
-                <h2 class="mb-4">Selecciona Nivel</h2>
+            <div class="card-body text-center p-4 p-md-5">
+                <h2 class="h3 mb-4">Selecciona Nivel</h2>
                 <div class="input-group mb-3">
                     <span class="input-group-text">👤</span>
                     <input type="text" id="input-climber-name" class="form-control" placeholder="Nombre del Escalador" value="Jugador">
@@ -37,11 +37,11 @@
 
         <!-- Contenedor del Juego (Oculto al inicio) -->
         <div id="contenedor-juego" class="card bg-secondary shadow-lg border-0 mb-4 d-none" style="width: 100%; max-width: 500px;">
-            <div class="card-body text-center p-5 position-relative">
-                <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="card-body text-center p-3 p-md-5 position-relative">
+                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2 mb-3">
                     <h5 class="mb-0 text-white-50 small d-flex align-items-center gap-2">
-                        Escalador: 
-                        <div class="name-display-container">
+                        Esc: 
+                        <div class="name-display-container text-truncate" style="max-width: 100px;">
                             <span id="display-climber-name">Jugador</span>
                         </div>
                     </h5>

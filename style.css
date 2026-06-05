@@ -55,7 +55,7 @@ body {
     justify-content: center;
     text-align: center;
     font-size: 0.9rem;
-    font-weight: bold;
+    font-weight: 700;
     color: #333;
     padding: 10px;
     flex-shrink: 0;
@@ -103,14 +103,23 @@ body {
     transform: scale(1.05);
 }
 
-/* Ajustes para móviles pequeños */
-@media (max-width: 360px) {
+/* Ajustes para móviles (iPhone 15 y similares) */
+@media (max-width: 576px) {
     :root {
-        --slot-width: 80px;
+        --slot-width: 85px;
         --slot-height: 100px;
+        --score-height: 28px;
     }
     .slot-item {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
+        padding: 5px;
+    }
+    .slot-machine {
+        padding: 10px;
+        gap: 5px;
+    }
+    .score-item {
+        font-size: 1rem;
     }
 }
 
