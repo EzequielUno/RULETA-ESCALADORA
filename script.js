@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const clickSound = document.getElementById('click-sound');
     const dingSound = document.getElementById('ding-sound');
+    const aciertoSound = document.getElementById('acierto-sound');
+    const errorSound = document.getElementById('error-sound');
     const btnMute = document.getElementById('btn-mute');
     
     const pantallaInicio = document.getElementById('pantalla-inicio');
@@ -63,6 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
         isMuted = !isMuted;
         clickSound.muted = isMuted;
         dingSound.muted = isMuted;
+        aciertoSound.muted = isMuted;
+        errorSound.muted = isMuted;
         
         // Actualizar UI del botón
         btnMute.textContent = isMuted ? '🔇' : '🔊';
@@ -85,12 +89,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listeners para los botones de acción
     btnCumplio.addEventListener('click', () => {
+        if (!isMuted) {
+            aciertoSound.currentTime = 0;
+            aciertoSound.play().catch(() => {});
+        }
         score++;
         animateCounter(displayScore, score);
         actionButtonsContainer.classList.add('d-none');
     });
 
     btnNoCumplio.addEventListener('click', () => {
+        if (!isMuted) {
+            errorSound.currentTime = 0;
+            errorSound.play().catch(() => {});
+        }
         failedAttempts++;
         animateCounter(displayFailed, failedAttempts);
         actionButtonsContainer.classList.add('d-none');
