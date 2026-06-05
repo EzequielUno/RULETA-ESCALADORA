@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const clickSound = document.getElementById('click-sound');
     const dingSound = document.getElementById('ding-sound');
+    const spinSound = document.getElementById('spin-sound');
     const aciertoSound = document.getElementById('acierto-sound');
     const errorSound = document.getElementById('error-sound');
     const btnMute = document.getElementById('btn-mute');
@@ -65,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isMuted = !isMuted;
         clickSound.muted = isMuted;
         dingSound.muted = isMuted;
+        spinSound.muted = isMuted;
         aciertoSound.muted = isMuted;
         errorSound.muted = isMuted;
         
@@ -195,6 +197,11 @@ document.addEventListener('DOMContentLoaded', () => {
     btnGirar.addEventListener('click', () => {
         btnGirar.disabled = true;
         actionButtonsContainer.classList.add('d-none'); // Ocultar botones de acción al inicio del giro
+        
+        if (!isMuted) {
+            spinSound.currentTime = 0;
+            spinSound.play().catch(e => console.log("Audio play prevented:", e));
+        }
         
         const slotHeight = getCssVar('--slot-height') || 120;
         const iterations = 4; // Cuántas vueltas extra
