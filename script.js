@@ -85,9 +85,16 @@ document.addEventListener('DOMContentLoaded', () => {
         contenedorJuego.classList.add('d-none');
     });
 
-    // Inicializar carretel de puntaje
-    initializeScoreReel();
-    initializeFailedReel();
+    // Tecla espacio o Enter para girar (comodidad de uso)
+    document.addEventListener('keydown', (e) => {
+        if ((e.code === 'Space' || e.code === 'Enter') && !contenedorJuego.classList.contains('d-none') && !btnGirar.disabled) {
+            btnGirar.click();
+        }
+    });
+
+    // Inicializar carreteles de contadores
+    initializeCounterReel(displayScore);
+    initializeCounterReel(displayFailed);
 
     // Event listeners para los botones de acción
     btnCumplio.addEventListener('click', () => {
@@ -139,23 +146,15 @@ document.addEventListener('DOMContentLoaded', () => {
         actionButtonsContainer.classList.add('d-none'); // Asegurarse de que los botones de acción estén ocultos al iniciar el juego
     }
 
-    function initializeScoreReel() {
+    // Función unificada para inicializar contadores (DRY - Don't Repeat Yourself)
+    function initializeCounterReel(element) {
         let html = '';
         // Creamos números del 0 al 99
         for (let i = 0; i <= 99; i++) {
             html += `<div class="score-item">${i}</div>`;
         }
-        displayScore.innerHTML = html;
-        animateCounter(displayScore, 0);
-    }
-
-    function initializeFailedReel() {
-        let html = '';
-        for (let i = 0; i <= 99; i++) {
-            html += `<div class="score-item">${i}</div>`;
-        }
-        displayFailed.innerHTML = html;
-        animateCounter(displayFailed, 0);
+        element.innerHTML = html;
+        animateCounter(element, 0);
     }
 
     // Función auxiliar para obtener valores de variables CSS
